@@ -1,0 +1,32 @@
+import { ConfigParams } from 'pip-services3-commons-node';
+import { IConfigurable } from 'pip-services3-commons-node';
+import { IReferences } from 'pip-services3-commons-node';
+import { IReferenceable } from 'pip-services3-commons-node';
+import { FilterParams } from 'pip-services3-commons-node';
+import { PagingParams } from 'pip-services3-commons-node';
+import { DataPage } from 'pip-services3-commons-node';
+import { ICommandable } from 'pip-services3-commons-node';
+import { CommandSet } from 'pip-services3-commons-node';
+import { CorrectionV1 } from '../data/version1/CorrectionV1';
+import { ICorrectionsController } from './ICorrectionsController';
+export declare class CorrectionsController implements IConfigurable, IReferenceable, ICommandable, ICorrectionsController {
+    private static _defaultConfig;
+    private _dependencyResolver;
+    private _organizationsClient;
+    private _organizationsConnector;
+    private _objectsClient;
+    private _objectsConnector;
+    private _statisticsClient;
+    private _statisticsConnector;
+    private _persistence;
+    private _commandSet;
+    configure(config: ConfigParams): void;
+    setReferences(references: IReferences): void;
+    getCommandSet(): CommandSet;
+    getCorrections(correlationId: string, filter: FilterParams, paging: PagingParams, callback: (err: any, page: DataPage<CorrectionV1>) => void): void;
+    getCorrectionById(correlationId: string, id: string, callback: (err: any, correction: CorrectionV1) => void): void;
+    private fixCorrection;
+    createCorrection(correlationId: string, correction: CorrectionV1, callback: (err: any, correction: CorrectionV1) => void): void;
+    updateCorrection(correlationId: string, correction: CorrectionV1, callback: (err: any, correction: CorrectionV1) => void): void;
+    deleteCorrectionById(correlationId: string, id: string, callback: (err: any, correction: CorrectionV1) => void): void;
+}
